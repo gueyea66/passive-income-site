@@ -1,7 +1,7 @@
 {
   "name": "passive-income-site",
-  "version": "1.0.0",
-  "description": "Automated passive income site with AdSense - Tech & Digital au Sénégal",
+  "version": "2.0.0",
+  "description": "Automated passive income site with AdSense - Tech & Digital Hub (Multilingual: EN/FR)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,8 +11,14 @@
     "adsense",
     "passive-income",
     "blog",
-    "senegal",
-    "tech"
+    "tech",
+    "digital",
+    "multilingual",
+    "i18n",
+    "web-development",
+    "digital-marketing",
+    "e-commerce",
+    "freelancing"
   ],
   "author": "",
   "license": "MIT",

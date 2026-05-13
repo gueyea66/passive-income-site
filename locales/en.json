@@ -1,0 +1,72 @@
+{
+  "site": {
+    "title": "Tech & Digital Hub - Your Complete Guide",
+    "description": "Your complete guide to succeed in web development, digital marketing, e-commerce and freelancing",
+    "tagline": "Learn, Grow, Succeed"
+  },
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact",
+    "categories": "Categories"
+  },
+  "hero": {
+    "title": "Welcome to Tech & Digital Hub 🚀",
+    "subtitle": "Your complete guide to succeed in web development, digital marketing, e-commerce and freelancing",
+    "cta": {
+      "blog": "Explore Blog",
+      "about": "Learn More"
+    }
+  },
+  "categories": {
+    "title": "Explore Our Categories",
+    "viewArticles": "View Articles"
+  },
+  "articles": {
+    "recent": "Recent Articles",
+    "viewAll": "View All Articles",
+    "readMore": "Read More",
+    "readTime": "min read",
+    "relatedArticles": "Related Articles",
+    "shareArticle": "Share this article"
+  },
+  "newsletter": {
+    "title": "📧 Stay Informed",
+    "description": "Receive our best articles directly in your inbox",
+    "placeholder": "Your email",
+    "subscribe": "Subscribe"
+  },
+  "footer": {
+    "description": "Your complete resource for tech and digital success",
+    "quickLinks": "Quick Links",
+    "categories": "Categories",
+    "followUs": "Follow Us",
+    "copyright": "All rights reserved"
+  },
+  "about": {
+    "title": "About Us",
+    "mission": "Our Mission",
+    "missionText": "We provide high-quality content to help you succeed in the digital world.",
+    "vision": "Our Vision",
+    "visionText": "To become the leading resource for tech and digital education worldwide."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "getInTouch": "Get In Touch",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message"
+  },
+  "errors": {
+    "notFound": "Page Not Found",
+    "notFoundMessage": "The page you are looking for does not exist.",
+    "goHome": "Go to Homepage"
+  },
+  "language": {
+    "switch": "Switch Language",
+    "en": "English",
+    "fr": "Français"
+  }
+}

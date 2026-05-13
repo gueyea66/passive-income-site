@@ -1,0 +1,72 @@
+{
+  "site": {
+    "title": "Tech & Digital Hub - Votre Guide Complet",
+    "description": "Votre guide complet pour réussir dans le développement web, marketing digital, e-commerce et freelancing",
+    "tagline": "Apprendre, Grandir, Réussir"
+  },
+  "nav": {
+    "home": "Accueil",
+    "blog": "Blog",
+    "about": "À Propos",
+    "contact": "Contact",
+    "categories": "Catégories"
+  },
+  "hero": {
+    "title": "Bienvenue sur Tech & Digital Hub 🚀",
+    "subtitle": "Votre guide complet pour réussir dans le développement web, marketing digital, e-commerce et freelancing",
+    "cta": {
+      "blog": "Découvrir le Blog",
+      "about": "En Savoir Plus"
+    }
+  },
+  "categories": {
+    "title": "Explorez Nos Catégories",
+    "viewArticles": "Voir les Articles"
+  },
+  "articles": {
+    "recent": "Articles Récents",
+    "viewAll": "Voir Tous les Articles",
+    "readMore": "Lire la suite",
+    "readTime": "min de lecture",
+    "relatedArticles": "Articles Liés",
+    "shareArticle": "Partager cet article"
+  },
+  "newsletter": {
+    "title": "📧 Restez Informé",
+    "description": "Recevez nos meilleurs articles directement dans votre boîte mail",
+    "placeholder": "Votre email",
+    "subscribe": "S'abonner"
+  },
+  "footer": {
+    "description": "Votre ressource complète pour réussir dans la tech et le digital",
+    "quickLinks": "Liens Rapides",
+    "categories": "Catégories",
+    "followUs": "Suivez-nous",
+    "copyright": "Tous droits réservés"
+  },
+  "about": {
+    "title": "À Propos",
+    "mission": "Notre Mission",
+    "missionText": "Nous fournissons du contenu de haute qualité pour vous aider à réussir dans le monde digital.",
+    "vision": "Notre Vision",
+    "visionText": "Devenir la ressource leader pour l'éducation tech et digitale dans le monde."
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "getInTouch": "Entrer en Contact",
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "send": "Envoyer le Message"
+  },
+  "errors": {
+    "notFound": "Page Non Trouvée",
+    "notFoundMessage": "La page que vous recherchez n'existe pas.",
+    "goHome": "Retour à l'Accueil"
+  },
+  "language": {
+    "switch": "Changer de Langue",
+    "en": "English",
+    "fr": "Français"
+  }
+}
