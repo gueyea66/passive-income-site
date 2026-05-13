@@ -9,6 +9,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Dropdown Menu Click Toggle (instead of hover)
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+    if (dropdownToggle && dropdownMenu) {
+        // Prevent default link behavior
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Toggle dropdown
+            if (dropdownMenu.style.display === 'block') {
+                dropdownMenu.style.display = 'none';
+            } else {
+                dropdownMenu.style.display = 'block';
+            }
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown')) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+        
+        // Close dropdown when clicking on a category link
+        const dropdownLinks = dropdownMenu.querySelectorAll('a');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                dropdownMenu.style.display = 'none';
+            });
+        });
+    }
+
     // Newsletter Form Handler
     const newsletterForms = document.querySelectorAll('.newsletter-form');
     newsletterForms.forEach(form => {

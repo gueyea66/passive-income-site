@@ -95,13 +95,9 @@ body {
     margin-top: 0.5rem;
 }
 
+/* Remove hover behavior - dropdown will be controlled by JavaScript */
 .dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-/* Prevent dropdown from staying open */
-.dropdown-menu:not(:hover) {
-    pointer-events: auto;
+    display: none;
 }
 
 .dropdown-menu li {
