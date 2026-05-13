@@ -82,7 +82,7 @@ body {
 }
 
 .dropdown-menu {
-    display: none;
+    display: none !important;
     position: absolute;
     top: 100%;
     left: 0;
@@ -95,9 +95,14 @@ body {
     margin-top: 0.5rem;
 }
 
+/* Dropdown is shown only when .show class is added by JavaScript */
+.dropdown-menu.show {
+    display: block !important;
+}
+
 /* Remove hover behavior - dropdown will be controlled by JavaScript */
 .dropdown:hover .dropdown-menu {
-    display: none;
+    display: none !important;
 }
 
 .dropdown-menu li {

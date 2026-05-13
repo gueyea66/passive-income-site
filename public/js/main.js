@@ -14,23 +14,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdownMenu = document.querySelector('.dropdown-menu');
     
     if (dropdownToggle && dropdownMenu) {
+        // Ensure dropdown is closed on page load
+        dropdownMenu.classList.remove('show');
+        
         // Prevent default link behavior
         dropdownToggle.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
-            // Toggle dropdown
-            if (dropdownMenu.style.display === 'block') {
-                dropdownMenu.style.display = 'none';
-            } else {
-                dropdownMenu.style.display = 'block';
-            }
+            // Toggle dropdown using class
+            dropdownMenu.classList.toggle('show');
         });
         
         // Close dropdown when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.dropdown')) {
-                dropdownMenu.style.display = 'none';
+                dropdownMenu.classList.remove('show');
             }
         });
         
@@ -38,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const dropdownLinks = dropdownMenu.querySelectorAll('a');
         dropdownLinks.forEach(link => {
             link.addEventListener('click', function() {
-                dropdownMenu.style.display = 'none';
+                dropdownMenu.classList.remove('show');
             });
         });
     }
