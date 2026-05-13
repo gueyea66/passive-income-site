@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<%= lang %>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<%= typeof description !== 'undefined' ? description : 'Tech & Digital au Sénégal - Votre guide complet pour réussir dans le développement web, marketing digital, e-commerce et freelancing' %>">
-    <meta name="keywords" content="tech sénégal, digital, développement web, marketing digital, e-commerce, freelancing, dakar">
-    <meta name="author" content="Tech & Digital Sénégal">
+    <meta name="description" content="<%= typeof description !== 'undefined' ? description : t.site.description %>">
+    <meta name="keywords" content="tech, digital, web development, digital marketing, e-commerce, freelancing">
+    <meta name="author" content="Tech & Digital Hub">
     
     <!-- Open Graph -->
     <meta property="og:title" content="<%= title %>">
-    <meta property="og:description" content="<%= typeof description !== 'undefined' ? description : 'Votre guide complet pour réussir dans le digital au Sénégal' %>">
+    <meta property="og:description" content="<%= typeof description !== 'undefined' ? description : t.site.description %>">
     <meta property="og:type" content="website">
-    <meta property="og:locale" content="fr_SN">
+    <meta property="og:locale" content="<%= lang === 'fr' ? 'fr_FR' : 'en_US' %>">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<%= title %>">
-    <meta name="twitter:description" content="<%= typeof description !== 'undefined' ? description : 'Votre guide complet pour réussir dans le digital au Sénégal' %>">
+    <meta name="twitter:description" content="<%= typeof description !== 'undefined' ? description : t.site.description %>">
     
-    <title><%= title %> | Tech & Digital Sénégal</title>
+    <title><%= title %> | <%= t.site.title %></title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/language-toggle.css">
     
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
@@ -40,24 +41,31 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="/">
-                        <h1>Tech & Digital 🇸🇳</h1>
+                    <a href="/?lang=<%= lang %>">
+                        <h1>Tech & Digital 🚀</h1>
                     </a>
                 </div>
                 <nav class="main-nav">
                     <ul>
-                        <li><a href="/">Accueil</a></li>
-                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/?lang=<%= lang %>"><%= t.nav.home %></a></li>
+                        <li><a href="/blog?lang=<%= lang %>"><%= t.nav.blog %></a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle">Catégories ▼</a>
+                            <a href="#" class="dropdown-toggle"><%= t.nav.categories %> ▼</a>
                             <ul class="dropdown-menu">
                                 <% categories.forEach(category => { %>
-                                    <li><a href="/category/<%= category.slug %>"><%= category.name %></a></li>
+                                    <li><a href="/category/<%= category.slug %>?lang=<%= lang %>"><%= category.name %></a></li>
                                 <% }); %>
                             </ul>
                         </li>
-                        <li><a href="/about">À Propos</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/about?lang=<%= lang %>"><%= t.nav.about %></a></li>
+                        <li><a href="/contact?lang=<%= lang %>"><%= t.nav.contact %></a></li>
+                        <li class="language-toggle">
+                            <% if (lang === 'fr') { %>
+                                <a href="?lang=en" class="lang-switch">🇬🇧 EN</a>
+                            <% } else { %>
+                                <a href="?lang=fr" class="lang-switch">🇫🇷 FR</a>
+                            <% } %>
+                        </li>
                     </ul>
                 </nav>
                 <button class="mobile-menu-toggle" aria-label="Menu">

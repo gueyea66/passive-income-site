@@ -3,23 +3,23 @@
 <div class="container">
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Bienvenue sur Tech & Digital Sénégal 🇸🇳</h1>
-        <p class="hero-subtitle">Votre guide complet pour réussir dans le développement web, marketing digital, e-commerce et freelancing</p>
+        <h1><%= t.hero.title %></h1>
+        <p class="hero-subtitle"><%= t.hero.subtitle %></p>
         <div class="hero-cta">
-            <a href="/blog" class="btn btn-primary">Découvrir le Blog</a>
-            <a href="/about" class="btn btn-secondary">En Savoir Plus</a>
+            <a href="/blog?lang=<%= lang %>" class="btn btn-primary"><%= t.hero.cta.blog %></a>
+            <a href="/about?lang=<%= lang %>" class="btn btn-secondary"><%= t.hero.cta.about %></a>
         </div>
     </section>
 
     <!-- Categories Section -->
     <section class="categories-section">
-        <h2>Explorez Nos Catégories</h2>
+        <h2><%= t.categories.title %></h2>
         <div class="categories-grid">
             <% categories.forEach(category => { %>
                 <div class="category-card">
                     <h3><%= category.name %></h3>
                     <p><%= category.description %></p>
-                    <a href="/category/<%= category.slug %>" class="btn btn-outline">Voir les Articles</a>
+                    <a href="/category/<%= category.slug %>?lang=<%= lang %>" class="btn btn-outline"><%= t.categories.viewArticles %></a>
                 </div>
             <% }); %>
         </div>
@@ -37,21 +37,21 @@
 
     <!-- Recent Articles Section -->
     <section class="recent-articles">
-        <h2>Articles Récents</h2>
+        <h2><%= t.articles.recent %></h2>
         <div class="articles-grid">
             <% recentArticles.forEach((article, index) => { %>
                 <article class="article-card">
                     <div class="article-meta">
                         <span class="category-badge"><%= article.category %></span>
-                        <span class="read-time">⏱️ <%= article.readTime %></span>
+                        <span class="read-time">⏱️ <%= article.readTime %> <%= t.articles.readTime %></span>
                     </div>
-                    <h3><a href="/article/<%= article.slug %>"><%= article.title %></a></h3>
+                    <h3><a href="/article/<%= article.slug %>?lang=<%= lang %>"><%= article.title %></a></h3>
                     <p class="article-excerpt"><%= article.excerpt %></p>
                     <div class="article-footer">
                         <span class="author">✍️ <%= article.author %></span>
-                        <span class="date">📅 <%= new Date(article.date).toLocaleDateString('fr-FR') %></span>
+                        <span class="date">📅 <%= new Date(article.date).toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-US') %></span>
                     </div>
-                    <a href="/article/<%= article.slug %>" class="read-more">Lire la suite →</a>
+                    <a href="/article/<%= article.slug %>?lang=<%= lang %>" class="read-more"><%= t.articles.readMore %> →</a>
                 </article>
                 
                 <!-- In-content Ad every 4 articles -->
@@ -68,18 +68,18 @@
             <% }); %>
         </div>
         <div class="view-all">
-            <a href="/blog" class="btn btn-primary">Voir Tous les Articles</a>
+            <a href="/blog?lang=<%= lang %>" class="btn btn-primary"><%= t.articles.viewAll %></a>
         </div>
     </section>
 
     <!-- Newsletter Section -->
     <section class="newsletter-section">
         <div class="newsletter-content">
-            <h2>📧 Restez Informé</h2>
-            <p>Recevez nos meilleurs articles directement dans votre boîte mail</p>
+            <h2><%= t.newsletter.title %></h2>
+            <p><%= t.newsletter.description %></p>
             <form class="newsletter-form">
-                <input type="email" placeholder="Votre email" required>
-                <button type="submit" class="btn btn-primary">S'abonner</button>
+                <input type="email" placeholder="<%= t.newsletter.placeholder %>" required>
+                <button type="submit" class="btn btn-primary"><%= t.newsletter.subscribe %></button>
             </form>
         </div>
     </section>
