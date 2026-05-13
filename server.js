@@ -12,14 +12,20 @@ app.set('views', path.join(__dirname, 'views'));
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Load articles data
-const articlesData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'articles.json'), 'utf8'));
+// Load articles data for both languages
+const articlesDataFr = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'articles.json'), 'utf8'));
+const articlesDataEn = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'articles-en.json'), 'utf8'));
 
 // Load translations
 const translations = {
   en: JSON.parse(fs.readFileSync(path.join(__dirname, 'locales', 'en.json'), 'utf8')),
   fr: JSON.parse(fs.readFileSync(path.join(__dirname, 'locales', 'fr.json'), 'utf8'))
 };
+
+// Helper function to get articles data based on language
+function getArticlesData(lang) {
+  return lang === 'en' ? articlesDataEn : articlesDataFr;
+}
 
 // Language detection middleware
 app.use((req, res, next) => {
@@ -68,62 +74,53 @@ app.use((req, res, next) => {
 });
 
 // Helper function to get articles by category
-function getArticlesByCategory(category) {
+function getArticlesByCategory(category, lang) {
+  const articlesData = getArticlesData(lang);
   return articlesData.articles.filter(article => article.category === category);
 }
 
 // Helper function to get recent articles
-function getRecentArticles(limit = 10) {
+function getRecentArticles(limit = 10, lang = 'fr') {
+  const articlesData = getArticlesData(lang);
   return articlesData.articles.slice(0, limit);
-}
-
-// Helper function to translate categories
-function translateCategories(categories, lang, translations) {
-  return categories.map(cat => {
-    const categoryTranslation = translations[lang]?.categoryData?.[cat.slug];
-    return {
-      ...cat,
-      name: categoryTranslation?.name || cat.name,
-      description: categoryTranslation?.description || cat.description
-    };
-  });
 }
 
 // Routes
 app.get('/', (req, res) => {
-  const recentArticles = getRecentArticles(12);
-  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
+  const articlesData = getArticlesData(res.locals.lang);
+  const recentArticles = getRecentArticles(12, res.locals.lang);
   
   res.render('index', {
     title: res.locals.t.site.title,
     recentArticles,
-    categories: translatedCategories,
+    categories: articlesData.categories,
     lang: res.locals.lang,
     t: res.locals.t
   });
 });
 
 app.get('/blog', (req, res) => {
+  const articlesData = getArticlesData(res.locals.lang);
   const page = parseInt(req.query.page) || 1;
   const perPage = 20;
   const start = (page - 1) * perPage;
   const end = start + perPage;
   const paginatedArticles = articlesData.articles.slice(start, end);
   const totalPages = Math.ceil(articlesData.articles.length / perPage);
-  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
 
   res.render('blog', {
     title: res.locals.t.nav.blog,
     articles: paginatedArticles,
     currentPage: page,
     totalPages,
-    categories: translatedCategories,
+    categories: articlesData.categories,
     lang: res.locals.lang,
     t: res.locals.t
   });
 });
 
 app.get('/category/:slug', (req, res) => {
+  const articlesData = getArticlesData(res.locals.lang);
   const categorySlug = req.params.slug;
   const category = articlesData.categories.find(cat => cat.slug === categorySlug);
   
@@ -135,26 +132,25 @@ app.get('/category/:slug', (req, res) => {
     });
   }
 
-  const categoryArticles = getArticlesByCategory(category.name);
-  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
-  const translatedCategory = translatedCategories.find(cat => cat.slug === categorySlug);
+  const categoryArticles = getArticlesByCategory(category.name, res.locals.lang);
   
   res.render('category', {
-    title: `${translatedCategory.name} - ${res.locals.t.nav.blog}`,
-    category: translatedCategory,
+    title: `${category.name} - ${res.locals.t.nav.blog}`,
+    category: category,
     articles: categoryArticles,
-    categories: translatedCategories,
+    categories: articlesData.categories,
     lang: res.locals.lang,
     t: res.locals.t
   });
 });
 
 app.get('/article/:slug', (req, res) => {
+  const articlesData = getArticlesData(res.locals.lang);
   const articleSlug = req.params.slug;
   const article = articlesData.articles.find(art => art.slug === articleSlug);
   
   if (!article) {
-    return res.status(404).render('404', { 
+    return res.status(404).render('404', {
       title: res.locals.t.errors.notFound,
       lang: res.locals.lang,
       t: res.locals.t
@@ -164,36 +160,34 @@ app.get('/article/:slug', (req, res) => {
   const relatedArticles = articlesData.articles
     .filter(art => art.category === article.category && art.slug !== article.slug)
     .slice(0, 3);
-
-  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
   
   res.render('article', {
     title: article.title,
     article,
     relatedArticles,
-    categories: translatedCategories,
+    categories: articlesData.categories,
     lang: res.locals.lang,
     t: res.locals.t
   });
 });
 
 app.get('/about', (req, res) => {
-  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
+  const articlesData = getArticlesData(res.locals.lang);
   
   res.render('about', {
     title: res.locals.t.nav.about,
-    categories: translatedCategories,
+    categories: articlesData.categories,
     lang: res.locals.lang,
     t: res.locals.t
   });
 });
 
 app.get('/contact', (req, res) => {
-  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
+  const articlesData = getArticlesData(res.locals.lang);
   
   res.render('contact', {
     title: res.locals.t.nav.contact,
-    categories: translatedCategories,
+    categories: articlesData.categories,
     lang: res.locals.lang,
     t: res.locals.t
   });
