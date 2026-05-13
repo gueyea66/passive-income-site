@@ -68,5 +68,24 @@
     "switch": "Changer de Langue",
     "en": "English",
     "fr": "Français"
+,
+  "categoryData": {
+    "developpement-web": {
+      "name": "Développement Web",
+      "description": "Apprenez les technologies web modernes et les meilleures pratiques de développement"
+    },
+    "marketing-digital": {
+      "name": "Marketing Digital",
+      "description": "Stratégies et techniques pour réussir votre marketing en ligne"
+    },
+    "e-commerce": {
+      "name": "E-commerce",
+      "description": "Tout sur la vente en ligne et la gestion d'une boutique e-commerce"
+    },
+    "freelancing": {
+      "name": "Freelancing",
+      "description": "Conseils pour réussir en tant que freelance"
+    }
+  }
   }
 }

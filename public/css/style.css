@@ -77,6 +77,10 @@ body {
     position: relative;
 }
 
+.dropdown-toggle {
+    cursor: pointer;
+}
+
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -88,10 +92,16 @@ body {
     padding: 0.5rem 0;
     min-width: 200px;
     z-index: 1000;
+    margin-top: 0.5rem;
 }
 
 .dropdown:hover .dropdown-menu {
     display: block;
+}
+
+/* Prevent dropdown from staying open */
+.dropdown-menu:not(:hover) {
+    pointer-events: auto;
 }
 
 .dropdown-menu li {

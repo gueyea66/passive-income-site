@@ -77,13 +77,24 @@ function getRecentArticles(limit = 10) {
   return articlesData.articles.slice(0, limit);
 }
 
+// Helper function to translate categories
+function translateCategories(categories, lang, translations) {
+  return categories.map(cat => ({
+    ...cat,
+    name: translations[lang].categoryData[cat.slug]?.name || cat.name,
+    description: translations[lang].categoryData[cat.slug]?.description || cat.description
+  }));
+}
+
 // Routes
 app.get('/', (req, res) => {
   const recentArticles = getRecentArticles(12);
+  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
+  
   res.render('index', {
     title: res.locals.t.site.title,
     recentArticles,
-    categories: articlesData.categories,
+    categories: translatedCategories,
     lang: res.locals.lang,
     t: res.locals.t
   });
@@ -96,13 +107,14 @@ app.get('/blog', (req, res) => {
   const end = start + perPage;
   const paginatedArticles = articlesData.articles.slice(start, end);
   const totalPages = Math.ceil(articlesData.articles.length / perPage);
+  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
 
   res.render('blog', {
     title: res.locals.t.nav.blog,
     articles: paginatedArticles,
     currentPage: page,
     totalPages,
-    categories: articlesData.categories,
+    categories: translatedCategories,
     lang: res.locals.lang,
     t: res.locals.t
   });
@@ -113,7 +125,7 @@ app.get('/category/:slug', (req, res) => {
   const category = articlesData.categories.find(cat => cat.slug === categorySlug);
   
   if (!category) {
-    return res.status(404).render('404', { 
+    return res.status(404).render('404', {
       title: res.locals.t.errors.notFound,
       lang: res.locals.lang,
       t: res.locals.t
@@ -121,12 +133,14 @@ app.get('/category/:slug', (req, res) => {
   }
 
   const categoryArticles = getArticlesByCategory(category.name);
+  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
+  const translatedCategory = translatedCategories.find(cat => cat.slug === categorySlug);
   
   res.render('category', {
-    title: `${category.name} - ${res.locals.t.nav.blog}`,
-    category,
+    title: `${translatedCategory.name} - ${res.locals.t.nav.blog}`,
+    category: translatedCategory,
     articles: categoryArticles,
-    categories: articlesData.categories,
+    categories: translatedCategories,
     lang: res.locals.lang,
     t: res.locals.t
   });
@@ -148,29 +162,35 @@ app.get('/article/:slug', (req, res) => {
     .filter(art => art.category === article.category && art.slug !== article.slug)
     .slice(0, 3);
 
+  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
+  
   res.render('article', {
     title: article.title,
     article,
     relatedArticles,
-    categories: articlesData.categories,
+    categories: translatedCategories,
     lang: res.locals.lang,
     t: res.locals.t
   });
 });
 
 app.get('/about', (req, res) => {
+  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
+  
   res.render('about', {
     title: res.locals.t.nav.about,
-    categories: articlesData.categories,
+    categories: translatedCategories,
     lang: res.locals.lang,
     t: res.locals.t
   });
 });
 
 app.get('/contact', (req, res) => {
+  const translatedCategories = translateCategories(articlesData.categories, res.locals.lang, translations);
+  
   res.render('contact', {
     title: res.locals.t.nav.contact,
-    categories: articlesData.categories,
+    categories: translatedCategories,
     lang: res.locals.lang,
     t: res.locals.t
   });

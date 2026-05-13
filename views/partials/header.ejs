@@ -60,10 +60,10 @@
                         <li><a href="/about?lang=<%= lang %>"><%= t.nav.about %></a></li>
                         <li><a href="/contact?lang=<%= lang %>"><%= t.nav.contact %></a></li>
                         <li class="language-toggle">
-                            <% if (lang === 'fr') { %>
-                                <a href="?lang=en" class="lang-switch">🇬🇧 EN</a>
-                            <% } else { %>
+                            <% if (lang === 'en') { %>
                                 <a href="?lang=fr" class="lang-switch">🇫🇷 FR</a>
+                            <% } else { %>
+                                <a href="?lang=en" class="lang-switch">🇬🇧 EN</a>
                             <% } %>
                         </li>
                     </ul>
