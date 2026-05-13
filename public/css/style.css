@@ -93,16 +93,29 @@ body {
     min-width: 200px;
     z-index: 1001;
     margin-top: 0.5rem;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
 }
 
 /* Dropdown is shown only when .show class is added by JavaScript */
 .dropdown-menu.show {
     display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 /* Remove hover behavior - dropdown will be controlled by JavaScript */
 .dropdown:hover .dropdown-menu {
     display: none !important;
+}
+
+/* Prevent dropdown items from being affected by scroll animations */
+.dropdown-menu li,
+.dropdown-menu a {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
 }
 
 .dropdown-menu li {
