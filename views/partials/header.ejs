@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<%= typeof description !== 'undefined' ? description : 'Tech & Digital au Sénégal - Votre guide complet pour réussir dans le développement web, marketing digital, e-commerce et freelancing' %>">
+    <meta name="keywords" content="tech sénégal, digital, développement web, marketing digital, e-commerce, freelancing, dakar">
+    <meta name="author" content="Tech & Digital Sénégal">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="<%= title %>">
+    <meta property="og:description" content="<%= typeof description !== 'undefined' ? description : 'Votre guide complet pour réussir dans le digital au Sénégal' %>">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_SN">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= title %>">
+    <meta name="twitter:description" content="<%= typeof description !== 'undefined' ? description : 'Votre guide complet pour réussir dans le digital au Sénégal' %>">
+    
+    <title><%= title %> | Tech & Digital Sénégal</title>
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header AdSense -->
+    <div class="ad-container ad-header">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="horizontal"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <h1>Tech & Digital 🇸🇳</h1>
+                    </a>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle">Catégories ▼</a>
+                            <ul class="dropdown-menu">
+                                <% categories.forEach(category => { %>
+                                    <li><a href="/category/<%= category.slug %>"><%= category.name %></a></li>
+                                <% }); %>
+                            </ul>
+                        </li>
+                        <li><a href="/about">À Propos</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="site-main">

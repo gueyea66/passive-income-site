@@ -1,0 +1,94 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Contactez-Nous</h1>
+        <p>Nous sommes là pour vous aider. N'hésitez pas à nous contacter!</p>
+    </div>
+
+    <div class="content-page">
+        <div class="contact-layout">
+            <div class="contact-form-section">
+                <h2>Envoyez-nous un Message</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nom Complet *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Sujet *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Envoyer le Message</button>
+                </form>
+            </div>
+
+            <div class="contact-info-section">
+                <!-- Sidebar Ad -->
+                <div class="ad-container ad-sidebar">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-XXXXXXXXXX"
+                         data-ad-slot="XXXXXXXXXX"
+                         data-ad-format="vertical"></ins>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Informations de Contact</h3>
+                    <div class="info-item">
+                        <strong>📧 Email:</strong>
+                        <p>contact@techdigitalsenegal.com</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>📱 WhatsApp:</strong>
+                        <p>+221 XX XXX XX XX</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>📍 Localisation:</strong>
+                        <p>Dakar, Sénégal</p>
+                    </div>
+                    <div class="info-item">
+                        <strong>⏰ Horaires:</strong>
+                        <p>Lundi - Vendredi: 9h - 18h</p>
+                    </div>
+                </div>
+
+                <div class="social-connect">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘 Facebook</a>
+                        <a href="#" class="social-link">🐦 Twitter</a>
+                        <a href="#" class="social-link">📷 Instagram</a>
+                        <a href="#" class="social-link">💼 LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Ad -->
+        <div class="ad-container ad-in-content">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="horizontal"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

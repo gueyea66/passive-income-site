@@ -1,0 +1,88 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Bienvenue sur Tech & Digital Sénégal 🇸🇳</h1>
+        <p class="hero-subtitle">Votre guide complet pour réussir dans le développement web, marketing digital, e-commerce et freelancing</p>
+        <div class="hero-cta">
+            <a href="/blog" class="btn btn-primary">Découvrir le Blog</a>
+            <a href="/about" class="btn btn-secondary">En Savoir Plus</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <h2>Explorez Nos Catégories</h2>
+        <div class="categories-grid">
+            <% categories.forEach(category => { %>
+                <div class="category-card">
+                    <h3><%= category.name %></h3>
+                    <p><%= category.description %></p>
+                    <a href="/category/<%= category.slug %>" class="btn btn-outline">Voir les Articles</a>
+                </div>
+            <% }); %>
+        </div>
+    </section>
+
+    <!-- Sidebar Ad -->
+    <div class="ad-container ad-sidebar">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXX"
+             data-ad-slot="XXXXXXXXXX"
+             data-ad-format="vertical"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- Recent Articles Section -->
+    <section class="recent-articles">
+        <h2>Articles Récents</h2>
+        <div class="articles-grid">
+            <% recentArticles.forEach((article, index) => { %>
+                <article class="article-card">
+                    <div class="article-meta">
+                        <span class="category-badge"><%= article.category %></span>
+                        <span class="read-time">⏱️ <%= article.readTime %></span>
+                    </div>
+                    <h3><a href="/article/<%= article.slug %>"><%= article.title %></a></h3>
+                    <p class="article-excerpt"><%= article.excerpt %></p>
+                    <div class="article-footer">
+                        <span class="author">✍️ <%= article.author %></span>
+                        <span class="date">📅 <%= new Date(article.date).toLocaleDateString('fr-FR') %></span>
+                    </div>
+                    <a href="/article/<%= article.slug %>" class="read-more">Lire la suite →</a>
+                </article>
+                
+                <!-- In-content Ad every 4 articles -->
+                <% if ((index + 1) % 4 === 0 && index < recentArticles.length - 1) { %>
+                    <div class="ad-container ad-in-content">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-XXXXXXXXXX"
+                             data-ad-slot="XXXXXXXXXX"
+                             data-ad-format="fluid"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                    </div>
+                <% } %>
+            <% }); %>
+        </div>
+        <div class="view-all">
+            <a href="/blog" class="btn btn-primary">Voir Tous les Articles</a>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h2>📧 Restez Informé</h2>
+            <p>Recevez nos meilleurs articles directement dans votre boîte mail</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Votre email" required>
+                <button type="submit" class="btn btn-primary">S'abonner</button>
+            </form>
+        </div>
+    </section>
+</div>
+
+<%- include('partials/footer') %>

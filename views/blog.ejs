@@ -1,0 +1,91 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    <div class="page-header">
+        <h1>📚 Tous les Articles</h1>
+        <p>Découvrez nos <%= articles.length %> articles sur le tech et le digital au Sénégal</p>
+    </div>
+
+    <div class="blog-layout">
+        <div class="blog-main">
+            <div class="articles-grid">
+                <% articles.forEach((article, index) => { %>
+                    <article class="article-card">
+                        <div class="article-meta">
+                            <span class="category-badge"><%= article.category %></span>
+                            <span class="read-time">⏱️ <%= article.readTime %></span>
+                        </div>
+                        <h2><a href="/article/<%= article.slug %>"><%= article.title %></a></h2>
+                        <p class="article-excerpt"><%= article.excerpt %></p>
+                        <div class="article-footer">
+                            <span class="author">✍️ <%= article.author %></span>
+                            <span class="date">📅 <%= new Date(article.date).toLocaleDateString('fr-FR') %></span>
+                        </div>
+                        <a href="/article/<%= article.slug %>" class="read-more">Lire la suite →</a>
+                    </article>
+
+                    <!-- In-content Ad every 6 articles -->
+                    <% if ((index + 1) % 6 === 0 && index < articles.length - 1) { %>
+                        <div class="ad-container ad-in-content">
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-client="ca-pub-XXXXXXXXXX"
+                                 data-ad-slot="XXXXXXXXXX"
+                                 data-ad-format="fluid"></ins>
+                            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                        </div>
+                    <% } %>
+                <% }); %>
+            </div>
+
+            <!-- Pagination -->
+            <% if (totalPages > 1) { %>
+                <div class="pagination">
+                    <% if (currentPage > 1) { %>
+                        <a href="/blog?page=<%= currentPage - 1 %>" class="btn btn-outline">← Précédent</a>
+                    <% } %>
+                    
+                    <span class="page-info">Page <%= currentPage %> sur <%= totalPages %></span>
+                    
+                    <% if (currentPage < totalPages) { %>
+                        <a href="/blog?page=<%= currentPage + 1 %>" class="btn btn-outline">Suivant →</a>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+
+        <aside class="blog-sidebar">
+            <!-- Sidebar Ad -->
+            <div class="ad-container ad-sidebar">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXX"
+                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-format="vertical"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <!-- Categories Widget -->
+            <div class="sidebar-widget">
+                <h3>Catégories</h3>
+                <ul class="category-list">
+                    <% categories.forEach(category => { %>
+                        <li><a href="/category/<%= category.slug %>"><%= category.name %></a></li>
+                    <% }); %>
+                </ul>
+            </div>
+
+            <!-- Newsletter Widget -->
+            <div class="sidebar-widget newsletter-widget">
+                <h3>📧 Newsletter</h3>
+                <p>Recevez nos meilleurs articles</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Votre email" required>
+                    <button type="submit" class="btn btn-primary">S'abonner</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

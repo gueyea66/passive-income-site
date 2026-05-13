@@ -1,0 +1,67 @@
+<%- include('partials/header') %>
+
+<div class="container">
+    <div class="page-header">
+        <h1>📂 <%= category.name %></h1>
+        <p><%= category.description %></p>
+        <p class="article-count"><%= articles.length %> articles dans cette catégorie</p>
+    </div>
+
+    <div class="blog-layout">
+        <div class="blog-main">
+            <div class="articles-grid">
+                <% articles.forEach((article, index) => { %>
+                    <article class="article-card">
+                        <div class="article-meta">
+                            <span class="category-badge"><%= article.category %></span>
+                            <span class="read-time">⏱️ <%= article.readTime %></span>
+                        </div>
+                        <h2><a href="/article/<%= article.slug %>"><%= article.title %></a></h2>
+                        <p class="article-excerpt"><%= article.excerpt %></p>
+                        <div class="article-footer">
+                            <span class="author">✍️ <%= article.author %></span>
+                            <span class="date">📅 <%= new Date(article.date).toLocaleDateString('fr-FR') %></span>
+                        </div>
+                        <a href="/article/<%= article.slug %>" class="read-more">Lire la suite →</a>
+                    </article>
+
+                    <!-- In-content Ad every 6 articles -->
+                    <% if ((index + 1) % 6 === 0 && index < articles.length - 1) { %>
+                        <div class="ad-container ad-in-content">
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-client="ca-pub-XXXXXXXXXX"
+                                 data-ad-slot="XXXXXXXXXX"
+                                 data-ad-format="fluid"></ins>
+                            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                        </div>
+                    <% } %>
+                <% }); %>
+            </div>
+        </div>
+
+        <aside class="blog-sidebar">
+            <!-- Sidebar Ad -->
+            <div class="ad-container ad-sidebar">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXX"
+                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-format="vertical"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <!-- Other Categories Widget -->
+            <div class="sidebar-widget">
+                <h3>Autres Catégories</h3>
+                <ul class="category-list">
+                    <% categories.filter(cat => cat.slug !== category.slug).forEach(cat => { %>
+                        <li><a href="/category/<%= cat.slug %>"><%= cat.name %></a></li>
+                    <% }); %>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
