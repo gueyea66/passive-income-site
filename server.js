@@ -79,11 +79,14 @@ function getRecentArticles(limit = 10) {
 
 // Helper function to translate categories
 function translateCategories(categories, lang, translations) {
-  return categories.map(cat => ({
-    ...cat,
-    name: translations[lang].categoryData[cat.slug]?.name || cat.name,
-    description: translations[lang].categoryData[cat.slug]?.description || cat.description
-  }));
+  return categories.map(cat => {
+    const categoryTranslation = translations[lang]?.categoryData?.[cat.slug];
+    return {
+      ...cat,
+      name: categoryTranslation?.name || cat.name,
+      description: categoryTranslation?.description || cat.description
+    };
+  });
 }
 
 // Routes
